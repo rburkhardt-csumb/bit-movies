@@ -8,6 +8,10 @@
         <servlet-name>CustomerServlet</servlet-name>
         <servlet-class>customer.CustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMovie</servlet-name>
+        <servlet-class>admin.AddMovie</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/order</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/customer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMovie</servlet-name>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
