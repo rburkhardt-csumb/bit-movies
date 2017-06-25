@@ -25,16 +25,16 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Roderick Burkhardt
  */
 @Entity
-@Table(name = "order", catalog = "movie_tickets", schema = "")
+@Table(name = "order")
 @XmlRootElement
 @NamedQueries(
 {
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o")
-    , @NamedQuery(name = "Order1.findByOrderNum", query = "SELECT o FROM Order1 o WHERE o.orderNum = :orderNum")
-    , @NamedQuery(name = "Order1.findByOrderDate", query = "SELECT o FROM Order1 o WHERE o.orderDate = :orderDate")
-    , @NamedQuery(name = "Order1.findByOrderSubtotal", query = "SELECT o FROM Order1 o WHERE o.orderSubtotal = :orderSubtotal")
+    @NamedQuery(name = "OrderObj.findAll", query = "SELECT o FROM OrderObj o")
+    , @NamedQuery(name = "OrderObj.findByOrderNum", query = "SELECT o FROM OrderObj o WHERE o.orderNum = :orderNum")
+    , @NamedQuery(name = "OrderObj.findByOrderDate", query = "SELECT o FROM OrderObj o WHERE o.orderDate = :orderDate")
+    , @NamedQuery(name = "OrderObj.findByOrderSubtotal", query = "SELECT o FROM OrderObj o WHERE o.orderSubtotal = :orderSubtotal")
 })
-public class Order1 implements Serializable
+public class OrderObj implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
@@ -46,16 +46,16 @@ public class Order1 implements Serializable
     private String orderDate;
     @Column(name = "order_subtotal")
     private Short orderSubtotal;
-    @ManyToMany(mappedBy = "order1Collection")
+    @ManyToMany(mappedBy = "orderObjCollection")
     private Collection<Customer> customerCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderObj")
     private Collection<OrderMovie> orderMovieCollection;
 
-    public Order1()
+    public OrderObj()
     {
     }
 
-    public Order1(Integer orderNum)
+    public OrderObj(Integer orderNum)
     {
         this.orderNum = orderNum;
     }
@@ -124,11 +124,11 @@ public class Order1 implements Serializable
     public boolean equals(Object object)
     {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order1))
+        if (!(object instanceof OrderObj))
         {
             return false;
         }
-        Order1 other = (Order1) object;
+        OrderObj other = (OrderObj) object;
         if ((this.orderNum == null && other.orderNum != null) || (this.orderNum != null && !this.orderNum.equals(other.orderNum)))
         {
             return false;
@@ -139,7 +139,7 @@ public class Order1 implements Serializable
     @Override
     public String toString()
     {
-        return "entities.Order1[ orderNum=" + orderNum + " ]";
+        return "entities.OrderObj[ orderNum=" + orderNum + " ]";
     }
     
 }

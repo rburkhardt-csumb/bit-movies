@@ -42,16 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Customer implements Serializable
 {
 
-    @JoinTable(name = "customer_order", joinColumns =
-    {
-        @JoinColumn(name = "cust_id", referencedColumnName = "cust_id")
-    }, inverseJoinColumns =
-    {
-        @JoinColumn(name = "order_num", referencedColumnName = "order_num")
-    })
-    @ManyToMany
-    private Collection<Order1> order1Collection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -69,6 +59,15 @@ public class Customer implements Serializable
     private String custAddress1;
     @Column(name = "cust_address2")
     private String custAddress2;
+    @JoinTable(name = "customer_order", joinColumns =
+    {
+        @JoinColumn(name = "cust_id", referencedColumnName = "cust_id")
+    }, inverseJoinColumns =
+    {
+        @JoinColumn(name = "order_num", referencedColumnName = "order_num")
+    })
+    @ManyToMany
+    private Collection<OrderObj> orderObjCollection;
     @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private ZipCode zip;
@@ -152,6 +151,17 @@ public class Customer implements Serializable
         this.custAddress2 = custAddress2;
     }
 
+    @XmlTransient
+    public Collection<OrderObj> getOrderObjCollection()
+    {
+        return orderObjCollection;
+    }
+
+    public void setOrderObjCollection(Collection<OrderObj> orderObjCollection)
+    {
+        this.orderObjCollection = orderObjCollection;
+    }
+
     public ZipCode getZip()
     {
         return zip;
@@ -190,17 +200,6 @@ public class Customer implements Serializable
     public String toString()
     {
         return "entities.Customer[ custId=" + custId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Order1> getOrder1Collection()
-    {
-        return order1Collection;
-    }
-
-    public void setOrder1Collection(Collection<Order1> order1Collection)
-    {
-        this.order1Collection = order1Collection;
     }
     
 }

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Roderick Burkhardt
  */
 @Entity
-@Table(name = "order_movie", catalog = "movie_tickets", schema = "")
+@Table(name = "order_movie")
 @XmlRootElement
 @NamedQueries(
 {
@@ -49,7 +49,7 @@ public class OrderMovie implements Serializable
     private String omTime;
     @JoinColumn(name = "order_num", referencedColumnName = "order_num", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Order1 order1;
+    private OrderObj orderObj;
     @JoinColumn(name = "movie_id", referencedColumnName = "movie_id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Movie movie;
@@ -118,14 +118,14 @@ public class OrderMovie implements Serializable
         this.omTime = omTime;
     }
 
-    public Order1 getOrder1()
+    public OrderObj getOrderObj()
     {
-        return order1;
+        return orderObj;
     }
 
-    public void setOrder1(Order1 order1)
+    public void setOrderObj(OrderObj orderObj)
     {
-        this.order1 = order1;
+        this.orderObj = orderObj;
     }
 
     public Movie getMovie()

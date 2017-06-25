@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Roderick Burkhardt
  */
 @Entity
-@Table(name = "movie", catalog = "movie_tickets", schema = "")
+@Table(name = "movie")
 @XmlRootElement
 @NamedQueries(
 {
