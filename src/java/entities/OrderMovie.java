@@ -6,14 +6,20 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,8 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries(
 {
     @NamedQuery(name = "OrderMovie.findAll", query = "SELECT o FROM OrderMovie o")
-    , @NamedQuery(name = "OrderMovie.findByOrderNum", query = "SELECT o FROM OrderMovie o WHERE o.orderMoviePK.orderNum = :orderNum")
-    , @NamedQuery(name = "OrderMovie.findByMovieId", query = "SELECT o FROM OrderMovie o WHERE o.orderMoviePK.movieId = :movieId")
+    , @NamedQuery(name = "OrderMovie.findByOmId", query = "SELECT o FROM OrderMovie o WHERE o.omId = :omId")
     , @NamedQuery(name = "OrderMovie.findByOmNumAdult", query = "SELECT o FROM OrderMovie o WHERE o.omNumAdult = :omNumAdult")
     , @NamedQuery(name = "OrderMovie.findByOmNumChild", query = "SELECT o FROM OrderMovie o WHERE o.omNumChild = :omNumChild")
     , @NamedQuery(name = "OrderMovie.findByOmDate", query = "SELECT o FROM OrderMovie o WHERE o.omDate = :omDate")
@@ -37,45 +42,44 @@ public class OrderMovie implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected OrderMoviePK orderMoviePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "om_id")
+    private Integer omId;
     @Column(name = "om_num_adult")
     private Integer omNumAdult;
     @Column(name = "om_num_child")
     private Integer omNumChild;
     @Column(name = "om_date")
-    private String omDate;
+    @Temporal(TemporalType.DATE)
+    private Date omDate;
     @Column(name = "om_time")
     private String omTime;
-    @JoinColumn(name = "order_num", referencedColumnName = "order_num", insertable = false, updatable = false)
+    @JoinColumn(name = "order_num", referencedColumnName = "order_num")
     @ManyToOne(optional = false)
-    private OrderObj orderObj;
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id", insertable = false, updatable = false)
+    private OrderObj orderNum;
+    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
     @ManyToOne(optional = false)
-    private Movie movie;
+    private Movie movieId;
 
     public OrderMovie()
     {
     }
 
-    public OrderMovie(OrderMoviePK orderMoviePK)
+    public OrderMovie(Integer omId)
     {
-        this.orderMoviePK = orderMoviePK;
+        this.omId = omId;
     }
 
-    public OrderMovie(int orderNum, int movieId)
+    public Integer getOmId()
     {
-        this.orderMoviePK = new OrderMoviePK(orderNum, movieId);
+        return omId;
     }
 
-    public OrderMoviePK getOrderMoviePK()
+    public void setOmId(Integer omId)
     {
-        return orderMoviePK;
-    }
-
-    public void setOrderMoviePK(OrderMoviePK orderMoviePK)
-    {
-        this.orderMoviePK = orderMoviePK;
+        this.omId = omId;
     }
 
     public Integer getOmNumAdult()
@@ -98,12 +102,12 @@ public class OrderMovie implements Serializable
         this.omNumChild = omNumChild;
     }
 
-    public String getOmDate()
+    public Date getOmDate()
     {
         return omDate;
     }
 
-    public void setOmDate(String omDate)
+    public void setOmDate(Date omDate)
     {
         this.omDate = omDate;
     }
@@ -118,31 +122,31 @@ public class OrderMovie implements Serializable
         this.omTime = omTime;
     }
 
-    public OrderObj getOrderObj()
+    public OrderObj getOrderNum()
     {
-        return orderObj;
+        return orderNum;
     }
 
-    public void setOrderObj(OrderObj orderObj)
+    public void setOrderNum(OrderObj orderNum)
     {
-        this.orderObj = orderObj;
+        this.orderNum = orderNum;
     }
 
-    public Movie getMovie()
+    public Movie getMovieId()
     {
-        return movie;
+        return movieId;
     }
 
-    public void setMovie(Movie movie)
+    public void setMovieId(Movie movieId)
     {
-        this.movie = movie;
+        this.movieId = movieId;
     }
 
     @Override
     public int hashCode()
     {
         int hash = 0;
-        hash += (orderMoviePK != null ? orderMoviePK.hashCode() : 0);
+        hash += (omId != null ? omId.hashCode() : 0);
         return hash;
     }
 
@@ -155,7 +159,7 @@ public class OrderMovie implements Serializable
             return false;
         }
         OrderMovie other = (OrderMovie) object;
-        if ((this.orderMoviePK == null && other.orderMoviePK != null) || (this.orderMoviePK != null && !this.orderMoviePK.equals(other.orderMoviePK)))
+        if ((this.omId == null && other.omId != null) || (this.omId != null && !this.omId.equals(other.omId)))
         {
             return false;
         }
@@ -165,7 +169,7 @@ public class OrderMovie implements Serializable
     @Override
     public String toString()
     {
-        return "entities.OrderMovie[ orderMoviePK=" + orderMoviePK + " ]";
+        return "entities.OrderMovie[ omId=" + omId + " ]";
     }
     
 }

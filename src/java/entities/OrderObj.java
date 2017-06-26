@@ -11,8 +11,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -39,6 +40,7 @@ public class OrderObj implements Serializable
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "order_num")
     private Integer orderNum;
@@ -46,9 +48,9 @@ public class OrderObj implements Serializable
     private String orderDate;
     @Column(name = "order_subtotal")
     private Short orderSubtotal;
-    @ManyToMany(mappedBy = "orderObjCollection")
-    private Collection<Customer> customerCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderObj")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderNum")
+    private Collection<CustomerOrder> customerOrderCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderNum")
     private Collection<OrderMovie> orderMovieCollection;
 
     public OrderObj()
@@ -91,14 +93,14 @@ public class OrderObj implements Serializable
     }
 
     @XmlTransient
-    public Collection<Customer> getCustomerCollection()
+    public Collection<CustomerOrder> getCustomerOrderCollection()
     {
-        return customerCollection;
+        return customerOrderCollection;
     }
 
-    public void setCustomerCollection(Collection<Customer> customerCollection)
+    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
     {
-        this.customerCollection = customerCollection;
+        this.customerOrderCollection = customerOrderCollection;
     }
 
     @XmlTransient

@@ -8,15 +8,17 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -44,6 +46,7 @@ public class Customer implements Serializable
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "cust_id")
     private Integer custId;
@@ -59,15 +62,8 @@ public class Customer implements Serializable
     private String custAddress1;
     @Column(name = "cust_address2")
     private String custAddress2;
-    @JoinTable(name = "customer_order", joinColumns =
-    {
-        @JoinColumn(name = "cust_id", referencedColumnName = "cust_id")
-    }, inverseJoinColumns =
-    {
-        @JoinColumn(name = "order_num", referencedColumnName = "order_num")
-    })
-    @ManyToMany
-    private Collection<OrderObj> orderObjCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "custId")
+    private Collection<CustomerOrder> customerOrderCollection;
     @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private ZipCode zip;
@@ -152,14 +148,14 @@ public class Customer implements Serializable
     }
 
     @XmlTransient
-    public Collection<OrderObj> getOrderObjCollection()
+    public Collection<CustomerOrder> getCustomerOrderCollection()
     {
-        return orderObjCollection;
+        return customerOrderCollection;
     }
 
-    public void setOrderObjCollection(Collection<OrderObj> orderObjCollection)
+    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
     {
-        this.orderObjCollection = orderObjCollection;
+        this.customerOrderCollection = customerOrderCollection;
     }
 
     public ZipCode getZip()

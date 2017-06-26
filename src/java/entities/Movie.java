@@ -7,16 +7,21 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,20 +34,22 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries(
 {
-    @NamedQuery(name = "Movie.findAll", query = "SELECT m FROM Movie m")
-    , @NamedQuery(name = "Movie.findByMovieId", query = "SELECT m FROM Movie m WHERE m.movieId = :movieId")
-    , @NamedQuery(name = "Movie.findByMovieTitle", query = "SELECT m FROM Movie m WHERE m.movieTitle = :movieTitle")
-    , @NamedQuery(name = "Movie.findByMovieRating", query = "SELECT m FROM Movie m WHERE m.movieRating = :movieRating")
-    , @NamedQuery(name = "Movie.findByMovieGenre", query = "SELECT m FROM Movie m WHERE m.movieGenre = :movieGenre")
-    , @NamedQuery(name = "Movie.findByMovieLength", query = "SELECT m FROM Movie m WHERE m.movieLength = :movieLength")
-    , @NamedQuery(name = "Movie.findByMovieStartDate", query = "SELECT m FROM Movie m WHERE m.movieStartDate = :movieStartDate")
-    , @NamedQuery(name = "Movie.findByMovieEndDate", query = "SELECT m FROM Movie m WHERE m.movieEndDate = :movieEndDate")
+    @NamedQuery(name = "Movie.findAll", query = "SELECT m FROM Movie m"),
+    @NamedQuery(name = "Movie.findByMovieId", query = "SELECT m FROM Movie m WHERE m.movieId = :movieId"),
+    @NamedQuery(name = "Movie.findByMovieTitle", query = "SELECT m FROM Movie m WHERE m.movieTitle = :movieTitle"),
+    @NamedQuery(name = "Movie.findByMovieRating", query = "SELECT m FROM Movie m WHERE m.movieRating = :movieRating"),
+    @NamedQuery(name = "Movie.findByMovieGenre", query = "SELECT m FROM Movie m WHERE m.movieGenre = :movieGenre"),
+    @NamedQuery(name = "Movie.findByMovieLength", query = "SELECT m FROM Movie m WHERE m.movieLength = :movieLength"),
+    @NamedQuery(name = "Movie.findByMovieStartDate", query = "SELECT m FROM Movie m WHERE m.movieStartDate = :movieStartDate"),
+    @NamedQuery(name = "Movie.findByMovieEndDate", query = "SELECT m FROM Movie m WHERE m.movieEndDate = :movieEndDate"),
+    @NamedQuery(name = "Movie.findMoviesByDate", query = "SELECT m FROM Movie m WHERE m.movieStartDate < :date AND m.movieEndDate > :date")
 })
 public class Movie implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "movie_id")
     private Integer movieId;
@@ -50,7 +57,7 @@ public class Movie implements Serializable
     private String movieTitle;
     @Lob
     @Column(name = "movie_descr")
-    private byte[] movieDescr;
+    private String movieDescr;
     @Column(name = "movie_rating")
     private String movieRating;
     @Column(name = "movie_genre")
@@ -58,10 +65,12 @@ public class Movie implements Serializable
     @Column(name = "movie_length")
     private Integer movieLength;
     @Column(name = "movie_start_date")
-    private String movieStartDate;
+    @Temporal(TemporalType.DATE)
+    private Date movieStartDate;
     @Column(name = "movie_end_date")
-    private String movieEndDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
+    @Temporal(TemporalType.DATE)
+    private Date movieEndDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieId")
     private Collection<OrderMovie> orderMovieCollection;
 
     public Movie()
@@ -93,12 +102,12 @@ public class Movie implements Serializable
         this.movieTitle = movieTitle;
     }
 
-    public byte[] getMovieDescr()
+    public String getMovieDescr()
     {
         return movieDescr;
     }
 
-    public void setMovieDescr(byte[] movieDescr)
+    public void setMovieDescr(String movieDescr)
     {
         this.movieDescr = movieDescr;
     }
@@ -133,22 +142,22 @@ public class Movie implements Serializable
         this.movieLength = movieLength;
     }
 
-    public String getMovieStartDate()
+    public Date getMovieStartDate()
     {
         return movieStartDate;
     }
 
-    public void setMovieStartDate(String movieStartDate)
+    public void setMovieStartDate(Date movieStartDate)
     {
         this.movieStartDate = movieStartDate;
     }
 
-    public String getMovieEndDate()
+    public Date getMovieEndDate()
     {
         return movieEndDate;
     }
 
-    public void setMovieEndDate(String movieEndDate)
+    public void setMovieEndDate(Date movieEndDate)
     {
         this.movieEndDate = movieEndDate;
     }

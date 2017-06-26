@@ -56,8 +56,6 @@ public class ZipCodeDBTest
         ZipCode expResult = testZipCode;
         ZipCode result = ZipCodeDB.getZipCodeData(zip);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -71,8 +69,6 @@ public class ZipCodeDBTest
         String expResult = "Saint Paul";
         String result = ZipCodeDB.getCityName(zip);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -86,8 +82,6 @@ public class ZipCodeDBTest
         String expResult = "NE";
         String result = ZipCodeDB.getStateAbrev(zip);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -101,8 +95,6 @@ public class ZipCodeDBTest
         String expResult = "Howard County";
         String result = ZipCodeDB.getCountyName(zip);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
     
 }
