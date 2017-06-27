@@ -10,9 +10,7 @@
 <%@page import="entities.ZipCode"%>
 
 <%
-    
-
-    Integer zip = Integer.parseInt(request.getParameter("zip"));
+    Integer zip = Integer.parseInt(request.getParameter("data"));
 
     JSONObject json = new JSONObject();
     ZipCodeDB zcdb = new ZipCodeDB();

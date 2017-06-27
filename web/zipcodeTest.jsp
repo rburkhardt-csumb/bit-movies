@@ -13,9 +13,23 @@
         <title>Zipcode Search</title>
     </head>
     <body>
-        <form action="jsonTable.jsp" method="POST">
-        <input type="text" id="zip" name="zip" />
-        <input type="submit" value="Submit" />
-        </form>
+        <span>Search Zipcode</span>
+        <input type="text" id="zip"/>
+        <input type="submit" value="Submit" id="submit" />
     </body>
+    
+    <script>       
+        $( "#submit" ).click(function() {
+        var zip = document.getElementById("zip").value;   
+        
+        $.ajax({
+        type: "post",
+        url: "jsonTable.jsp", 
+        data: {"data":zip}, // Insert zipcode to search here
+        success: function(data) {
+            alert(data.city + ", " + data.state + ", " + data.county + ", "  + data.zip);
+        }
+        });
+  });
+    </script>
 </html>
