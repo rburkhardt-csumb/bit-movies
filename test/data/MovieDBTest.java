@@ -7,17 +7,13 @@ package data;
 
 import entities.Movie;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -62,6 +58,7 @@ public class MovieDBTest
             endDate = null;
         }
         testMovie.setMovieEndDate(endDate);
+        testMovie.setMovieTrailer("https://youtu.be/eyKOgnaf0BU");
     }
     
     @AfterClass

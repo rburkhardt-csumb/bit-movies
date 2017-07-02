@@ -46,7 +46,6 @@ import javax.xml.bind.annotation.XmlTransient;
 })
 public class Movie implements Serializable
 {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +69,8 @@ public class Movie implements Serializable
     @Column(name = "movie_end_date")
     @Temporal(TemporalType.DATE)
     private Date movieEndDate;
+    @Column(name = "movie_trailer")
+    private String movieTrailer;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieId")
     private Collection<OrderMovie> orderMovieCollection;
 
@@ -160,6 +161,16 @@ public class Movie implements Serializable
     public void setMovieEndDate(Date movieEndDate)
     {
         this.movieEndDate = movieEndDate;
+    }
+
+    public String getMovieTrailer()
+    {
+        return movieTrailer;
+    }
+
+    public void setMovieTrailer(String movieTrailer)
+    {
+        this.movieTrailer = movieTrailer;
     }
 
     @XmlTransient
