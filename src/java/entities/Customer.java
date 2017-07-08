@@ -44,6 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Customer implements Serializable
 {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,7 +64,7 @@ public class Customer implements Serializable
     @Column(name = "cust_address2")
     private String custAddress2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custId")
-    private Collection<CustomerOrder> customerOrderCollection;
+    private Collection<OrderObj> orderObjCollection;
     @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private ZipCode zip;
@@ -148,15 +149,26 @@ public class Customer implements Serializable
     }
 
     @XmlTransient
-    public Collection<CustomerOrder> getCustomerOrderCollection()
+    public Collection<OrderObj> getOrderObjCollection()
     {
-        return customerOrderCollection;
+        return orderObjCollection;
     }
 
-    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
+    public void setOrderObjCollection(Collection<OrderObj> orderObjCollection)
     {
-        this.customerOrderCollection = customerOrderCollection;
+        this.orderObjCollection = orderObjCollection;
     }
+
+//    @XmlTransient
+//    public Collection<CustomerOrder> getCustomerOrderCollection()
+//    {
+//        return customerOrderCollection;
+//    }
+//
+//    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
+//    {
+//        this.customerOrderCollection = customerOrderCollection;
+//    }
 
     public ZipCode getZip()
     {

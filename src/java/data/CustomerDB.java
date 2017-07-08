@@ -21,9 +21,10 @@ import javax.persistence.Query;
  */
 public class CustomerDB
 {
-     public static boolean insertMovie(Customer customer)
+
+    public static boolean insertCustomer(Customer customer)
     {
-        if (!CustomerDB.customerExists(customer.getCustFname(),customer.getCustLname(),customer.getCustAddress1()))
+        if (!CustomerDB.customerExists(customer.getCustFname(), customer.getCustLname(), customer.getCustAddress1()))
         {
             EntityManager em = DBUtil.getEmFactory().createEntityManager();
             EntityTransaction trans = em.getTransaction();
@@ -33,22 +34,20 @@ public class CustomerDB
                 em.persist(customer);
                 trans.commit();
                 return true;
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 System.err.println(e);
                 trans.rollback();
                 return false;
-            }
-            finally
+            } finally
             {
                 em.close();
             }
         }
         return false;
     }
-     
-      public static boolean updateCustomer(Customer customer)
+
+    public static boolean updateCustomer(Customer customer)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -58,19 +57,17 @@ public class CustomerDB
             em.merge(customer);
             trans.commit();
             return true;
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             System.err.println(e);
             trans.rollback();
             return false;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-      
+
     public static boolean deleteCustomer(Customer customer)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -81,19 +78,17 @@ public class CustomerDB
             em.remove(em.merge(customer));
             trans.commit();
             return true;
-        } 
-        catch (Exception e)
+        } catch (Exception e)
         {
             System.err.println(e);
             trans.rollback();
             return false;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
+
     public static Customer selectCustomerByID(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -101,19 +96,18 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData;
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
     
+    // not needed
     public static String getCustomerFname(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -121,39 +115,37 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustFname();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
-       public static String getCustomerLname(Integer custId)
+
+    // not needed
+    public static String getCustomerLname(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustId", Customer.class);
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustLname();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-       
+
+    // not needed
     public static String getCustomerEmail(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -161,39 +153,37 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustEmail();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
     
-        public static String getCustomerPhone(Integer custId)
+    //should be search bu phone number
+    public static String getCustomerPhone(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustId", Customer.class);
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustPhone();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-        
+
+    // not needed.....
     public static String getCustomerAddress1(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -201,19 +191,18 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustAddress1();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
+
+    // not needed.....
     public static String getCustomerAddress2(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -221,19 +210,18 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustAddress2();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
     
+    // this is unneeded, search by zipcode should return a list of customers.
     public static ZipCode getCustomerZip(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -241,20 +229,18 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getZip();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
-    
+
+    // not needed.....
     public static List<Customer> selectCustomerByFname(String fname)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -268,20 +254,18 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-    
-     public static List<Customer> selectCustomerByLname(String lname)
+
+    public static List<Customer> selectCustomerByLname(String lname)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustLname", Customer.class);
@@ -294,20 +278,20 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-     
-    //Convert Later to just get one
+
+    // >>>> email can only be associated with one account so this is un needed
+    // for list return
+    //Convert Later to just get one ????????
     public static List<Customer> selectCustomerByEmail(String email)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -321,20 +305,19 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-     
-     public static List<Customer> selectCustomerByPhone(String phone)
+
+    
+    public static List<Customer> selectCustomerByPhone(String phone)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustPhone", Customer.class);
@@ -347,20 +330,19 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-   
-     public static List<Customer> selectCustomerByAddress1(String address)
+    
+    // not needed
+    public static List<Customer> selectCustomerByAddress1(String address)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustAddress1", Customer.class);
@@ -373,20 +355,19 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
     
-      public static List<Customer> selectCustomerByAddress2(String address)
+    // not needed......
+    public static List<Customer> selectCustomerByAddress2(String address)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustAddress1", Customer.class);
@@ -399,20 +380,18 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
     
-    
+    // not needed.....
     public static Customer selectByFullNameAndAddress(String fname, String lname, String address)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -422,21 +401,18 @@ public class CustomerDB
         q.setParameter("custAddress1", address);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData;
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-      
-      
-    public static boolean  customerExists(String fname, String lname, String address)
+
+    public static boolean customerExists(String fname, String lname, String address)
     {
         Customer customer = selectByFullNameAndAddress(fname, lname, address);
         return customer != null;
