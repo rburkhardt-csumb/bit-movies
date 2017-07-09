@@ -6,7 +6,6 @@
 package admin;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,6 +65,8 @@ public class AddMovie extends HttpServlet
             } catch (ParseException ex) {
                 Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
             }
+            String movie_trailer = request.getParameter("movie_trailer");
+            String movie_image = request.getParameter("movie_image");
             // store data in movie object
             Movie movie = new Movie();
             movie.setMovieTitle(movie_title);
@@ -75,6 +76,8 @@ public class AddMovie extends HttpServlet
             movie.setMovieLength(movie_length);
             movie.setMovieStartDate(movieStartDate);
             movie.setMovieEndDate(movieEndDate);
+            movie.setMovieTrailer(movie_trailer);
+            movie.setMovieImage(movie_image);
             //movie_title,movie_descr,movie_rating,movie_genre,movie_length,movie_start_date,movie_end_date);
 
             // validate the parameters
@@ -99,5 +102,38 @@ public class AddMovie extends HttpServlet
             HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
-    }    
+    }
+    
+    private boolean validateDate(String date)
+    {
+        String year, month, day;
+        year = date.substring(0, 3);
+        month = date.substring(5, 6);
+        day = date.substring(8, 9);
+        
+        for ( int i = 0; i < date.length(); i++ )
+        {
+            if ( i != 4 && i != 7 )
+            {
+                if ( !Character.isDigit(date.charAt(i)) )
+                    return false;
+            }
+            else
+            {
+                if ( date.charAt(i) != '-' )
+                    return false;
+            }    
+        }
+        
+        if ( Integer.getInteger( year ) < 2017 || Integer.getInteger( year ) > 2018 )
+            return false;
+        
+        if ( Integer.getInteger( month ) < 1 || Integer.getInteger( month ) > 12 )
+            return false;
+        
+        if ( Integer.getInteger( day ) < 1 || Integer.getInteger( day ) > 31 )
+            return false;
+        
+        return true;
+    }
 }
