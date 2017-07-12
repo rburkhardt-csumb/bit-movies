@@ -1,0 +1,6 @@
+.page-header {
+    background-image:  url("../images/header-bg.svg");
+    background-position: top left;
+    background-size: cover;
+    color: red;
+}

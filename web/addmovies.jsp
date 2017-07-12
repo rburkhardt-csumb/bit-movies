@@ -10,10 +10,8 @@
 <html >
     <head>
         <title>add movie</title>
-                <link href=" styles/bootstrap-3-3-7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!--        <style type="text/css">
-            <//%@include file="styles/bootstrap-3-3-7/css/bootstrap.min.css" %>
-        </style>-->
+        <link href=" styles/bootstrap-3-3-7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!--style>
             div.form-group {
                 margin: .5em;

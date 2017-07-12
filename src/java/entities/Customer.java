@@ -44,7 +44,6 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Customer implements Serializable
 {
 
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,6 +67,8 @@ public class Customer implements Serializable
     @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private ZipCode zip;
+    @Column(name = "cust_password")
+    private String custPassword;
 
     public Customer()
     {
@@ -180,6 +181,17 @@ public class Customer implements Serializable
         this.zip = zip;
     }
 
+    public String getCustPassword()
+    {
+        return custPassword;
+    }
+
+    public void setCustPassword(String custPassword)
+    {
+        this.custPassword = custPassword;
+    }
+    
+
     @Override
     public int hashCode()
     {
@@ -209,5 +221,4 @@ public class Customer implements Serializable
     {
         return "entities.Customer[ custId=" + custId + " ]";
     }
-    
 }

@@ -7,7 +7,6 @@
     <class>entities.OrderObj</class>
     <class>entities.Movie</class>
     <class>entities.OrderMovie</class>
-    <class>entities.CustomerOrder</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://35.188.185.129:3306/movie_tickets"/>
