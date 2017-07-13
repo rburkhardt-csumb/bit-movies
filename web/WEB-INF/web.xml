@@ -12,6 +12,11 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>ordering.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MovieServlet</servlet-name>
+        <servlet-class>admin.MovieServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -23,6 +28,10 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieServlet</servlet-name>
+        <url-pattern>/MovieServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
