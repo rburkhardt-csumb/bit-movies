@@ -2,11 +2,11 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="movie_ticketsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>entities.Customer</class>
+    <!--class>entities.Customer</class>
     <class>entities.ZipCode</class>
     <class>entities.OrderObj</class>
     <class>entities.Movie</class>
-    <class>entities.OrderMovie</class>
+    <class>entities.OrderMovie</class-->
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://35.188.185.129:3306/movie_tickets"/>
