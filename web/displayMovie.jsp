@@ -46,7 +46,7 @@
                               color: black;
                               font-family: Verdana;
                               padding: 2%;
-                              margin: 100px 400px;
+                              margin: 20px 400px;
                               overflow: auto;
                             }
                             
@@ -58,6 +58,10 @@
                             
                             .box {
                               border: 1px grey solid;
+                            }
+                            
+                            body{
+                              background-color:lightgray;
                             }
 
                           </style>
@@ -144,17 +148,13 @@
 
                           </div>
 
-                          <div class="shadow">
+                          <div class="shadow" style="background:snow;">
 
-                            <iframe width="854" height="480" src="<%=trailer%>">
+                            <iframe width="854" height="480" src="<%=trailer%>" style="border: 1px solid black;">
 
                             </iframe>
 
                           </div>
-
-
-
-
 
                           <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
