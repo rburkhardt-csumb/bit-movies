@@ -62,7 +62,7 @@ public class CustomerDBTest
     }
     
     /**
-     * Test of getCustomerPhone method, of class CustomerDB.
+     * Test of getCustomerPhone method, of class CustomerDB. 
      */
     @Test
     public void testGetCustomerPhone()
