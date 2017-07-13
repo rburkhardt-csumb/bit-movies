@@ -75,21 +75,6 @@ public class CustomerDBTest
         assertEquals(expResult, result);
     }
     
-    /**
-     * Test of updateCustomer method, of class CustomerDB.
-     */
-    @Test
-    public void testGetCustomerPhone()
-    {
-        System.out.println("updateCustomer");
-        ZipCode testZipCode = new ZipCode(68873, "Saint Paul", "NE", "Howard");
-        Customer testCustomer = new Customer(01,"Rob", "Ford","robforb123@gmail.com","408-222-2222", "123 Sesame Street","",testZipCode);
-        CustomerDB.updateCustomer(testCustomer);
-        Integer id = 01;
-        String expResult = "408-222-2222";
-        String result = CustomerDB.getCustomerPhone(id);
-        assertEquals(expResult, result);
-    }
-    
+ 
     
 }

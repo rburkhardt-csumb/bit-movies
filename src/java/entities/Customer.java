@@ -64,10 +64,12 @@ public class Customer implements Serializable
     @Column(name = "cust_address2")
     private String custAddress2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custId")
-    private Collection<CustomerOrder> customerOrderCollection;
+    private Collection<OrderObj> orderObjCollection;
     @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private ZipCode zip;
+    @Column(name = "cust_password")
+    private String custPassword;
 
     public Customer()
     {
@@ -161,15 +163,26 @@ public class Customer implements Serializable
     }
 
     @XmlTransient
-    public Collection<CustomerOrder> getCustomerOrderCollection()
+    public Collection<OrderObj> getOrderObjCollection()
     {
-        return customerOrderCollection;
+        return orderObjCollection;
     }
 
-    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
+    public void setOrderObjCollection(Collection<OrderObj> orderObjCollection)
     {
-        this.customerOrderCollection = customerOrderCollection;
+        this.orderObjCollection = orderObjCollection;
     }
+
+//    @XmlTransient
+//    public Collection<CustomerOrder> getCustomerOrderCollection()
+//    {
+//        return customerOrderCollection;
+//    }
+//
+//    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection)
+//    {
+//        this.customerOrderCollection = customerOrderCollection;
+//    }
 
     public ZipCode getZip()
     {
@@ -180,6 +193,17 @@ public class Customer implements Serializable
     {
         this.zip = zip;
     }
+
+    public String getCustPassword()
+    {
+        return custPassword;
+    }
+
+    public void setCustPassword(String custPassword)
+    {
+        this.custPassword = custPassword;
+    }
+    
 
     @Override
     public int hashCode()
@@ -210,5 +234,4 @@ public class Customer implements Serializable
     {
         return "entities.Customer[ custId=" + custId + " ]";
     }
-    
 }

@@ -70,6 +70,10 @@ public class Movie implements Serializable
     @Column(name = "movie_end_date")
     @Temporal(TemporalType.DATE)
     private Date movieEndDate;
+    @Column(name = "movie_trailer")
+    private String movieTrailer;
+    @Column(name = "movie_image")
+    private String movieImage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieId")
     private Collection<OrderMovie> orderMovieCollection;
 
@@ -162,6 +166,16 @@ public class Movie implements Serializable
         this.movieEndDate = movieEndDate;
     }
 
+    public String getMovieTrailer()
+    {
+        return movieTrailer;
+    }
+
+    public void setMovieTrailer(String movieTrailer)
+    {
+        this.movieTrailer = movieTrailer;
+    }
+
     @XmlTransient
     public Collection<OrderMovie> getOrderMovieCollection()
     {
@@ -201,6 +215,16 @@ public class Movie implements Serializable
     public String toString()
     {
         return "entities.Movie[ movieId=" + movieId + " ]";
+    }
+
+    public String getMovieImage()
+    {
+        return movieImage;
+    }
+
+    public void setMovieImage(String movieImage)
+    {
+        this.movieImage = movieImage;
     }
     
 }
