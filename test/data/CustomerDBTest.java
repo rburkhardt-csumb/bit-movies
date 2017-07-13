@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.util.List;
 import static org.junit.Assert.*;
 
 /**
@@ -75,6 +76,69 @@ public class CustomerDBTest
         assertEquals(expResult, result);
     }
     
- 
+     /**
+     * Test of selectCustomerByLname method, of class CustomerDB. 
+     */
+    @Test
+    public void testSelectCustomerByLname()
+    {
+
+        System.out.println("selectCustomerByLname");
+        String lname = "Ford";
+        Integer id = 01;
+        Customer expResult = CustomerDB.selectCustomerByID(id);
+        List<Customer> grab = CustomerDB.selectCustomerByLname(lname);
+        Customer result = grab.get(0);
+        assertEquals(expResult, result);
+    }
     
+    /**
+     * Test of selectCustomerByLname method, of class CustomerDB. 
+     */
+    @Test
+    public void selectCustomerByEmail()
+    {
+
+        System.out.println("selectCustomerByEmail");
+        Integer id = 01;
+        String email = "robforb123@gmail.com";
+        Customer expResult = CustomerDB.selectCustomerByID(id);
+        Customer result = CustomerDB.selectCustomerByEmail(email);
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * Test of selectCustomerByPhone method, of class CustomerDB. 
+     */
+    @Test
+    public void testSelectCustomerByPhone()
+    {
+
+        System.out.println("selectCustomerByPhone");
+        String phone = "408-111-2222";
+        Integer id = 01;
+        Customer expResult = CustomerDB.selectCustomerByID(id);
+        List<Customer> grab = CustomerDB.selectCustomerByPhone(phone);
+        Customer result = grab.get(0);
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * Test of selectCustomerByPhone method, of class CustomerDB. 
+     */
+    @Test
+    public void testSelectByFullNameAndAddress()
+    {
+
+        System.out.println("selectByFullNameAndAddress");
+        String fname = "Rob";
+        String lname = "Ford";
+        String email = "robforb123@gmail.com";
+        Integer id = 01;
+        Customer expResult = CustomerDB.selectCustomerByID(id);
+        Customer result= CustomerDB.selectByFullNameAndAddress(fname, lname, email);   
+        assertEquals(expResult, result);
+    }
+    
+
 }
