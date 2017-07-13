@@ -77,7 +77,7 @@ public class InvoiceDB
         return order != null;
     }
     
-    public static List<OrderObj> selectCustomerByID(int custId)
+    public static List<OrderObj> selectCustomerByID(int custId) 
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("OrderObj.findByCustId", OrderObj.class);
