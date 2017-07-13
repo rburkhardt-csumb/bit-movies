@@ -12,7 +12,7 @@
         <title>add movie</title>
         <link href=" styles/bootstrap-3-3-7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-        <!--style>
+        <style>
             div.form-group {
                 margin: .5em;
                 vertical-align: top;
@@ -22,7 +22,7 @@
                 display: block;
                 width: 15em;
             }
-        </style-->
+        </style>
 
     </head>
 </html>
