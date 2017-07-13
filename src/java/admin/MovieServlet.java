@@ -41,8 +41,8 @@ public class MovieServlet extends HttpServlet {
         String length = Integer.toString(movie.getMovieLength());
         String startDate = sdf.format(movie.getMovieStartDate());
         String endDate = sdf.format(movie.getMovieEndDate());
-
-        
+        String image = movie.getMovieImage();
+        String trailer = movie.getMovieTrailer();
 
         request.setAttribute("title", title);
         request.setAttribute("desc", desc);
@@ -51,9 +51,9 @@ public class MovieServlet extends HttpServlet {
         request.setAttribute("length", length);
         request.setAttribute("startDate", startDate);
         request.setAttribute("endDate", endDate);
-
-
-        
+        request.setAttribute("image", image);
+        request.setAttribute("trailer", trailer);
+       
         request.getRequestDispatcher("/displayMovie.jsp").forward(request, response);
     }
 
