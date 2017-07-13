@@ -11,11 +11,18 @@
 <% String desc=(String)request.getAttribute("desc"); %>
 <% String genre=(String)request.getAttribute("genre"); %>
 <% String rating=(String)request.getAttribute("rating"); %>
+<% String length=(String)request.getAttribute("length"); %>
+<% String startDate=(String)request.getAttribute("startDate"); %>
+<% String endDate=(String)request.getAttribute("endDate"); %>
 
 
 <%=title%>
 <%=desc%>
 <%=genre%>
 <%=rating%>
+<%=length%>
+<%=startDate%>
+<%=endDate%>
+
 
 

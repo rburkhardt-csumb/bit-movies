@@ -5,6 +5,8 @@
  */
 package admin;
 
+import java.util.*;
+import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,12 +31,16 @@ public class MovieServlet extends HttpServlet {
         MovieDB mdb = new MovieDB();
     
         Movie movie = mdb.SelectMovieById(movieID);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         String title = movie.getMovieTitle();
         String desc = movie.getMovieDescr();
         String rating = movie.getMovieRating();
         String genre = movie.getMovieGenre();
-        int length = movie.getMovieLength();
+        String length = Integer.toString(movie.getMovieLength());
+        String startDate = sdf.format(movie.getMovieStartDate());
+        String endDate = sdf.format(movie.getMovieEndDate());
 
         
 
@@ -43,6 +49,8 @@ public class MovieServlet extends HttpServlet {
         request.setAttribute("genre", genre);
         request.setAttribute("rating", rating);
         request.setAttribute("length", length);
+        request.setAttribute("startDate", startDate);
+        request.setAttribute("endDate", endDate);
 
 
         
