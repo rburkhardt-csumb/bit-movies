@@ -48,7 +48,7 @@ public class CustomerDB
         return false;
     }
      
-      public static boolean updateCustomer(Customer customer)
+    public static boolean updateCustomer(Customer customer)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -240,6 +240,7 @@ public class CustomerDB
         }
     }
       
+    
       
     public static boolean  customerExists(String fname, String lname, String email)
     {
