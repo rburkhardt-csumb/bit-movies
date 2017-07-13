@@ -6,8 +6,6 @@
 package data;
 
 import entities.Customer;
-import entities.ZipCode;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -115,8 +113,6 @@ public class CustomerDB
     }
     
     
-   
-    
         public static String getCustomerPhone(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -136,12 +132,6 @@ public class CustomerDB
             em.close();
         }
     }
-        
-    
-   
-    
-    
-    
     
      public static List<Customer> selectCustomerByLname(String lname)
     {
