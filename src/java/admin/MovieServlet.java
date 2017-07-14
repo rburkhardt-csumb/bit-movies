@@ -29,9 +29,9 @@ public class MovieServlet extends HttpServlet {
         Long movieID = Long.parseLong(request.getParameter("movieID"));
 
         MovieDB mdb = new MovieDB();
-    
+
         Movie movie = mdb.SelectMovieById(movieID);
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         String title = movie.getMovieTitle();

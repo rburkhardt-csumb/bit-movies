@@ -46,7 +46,7 @@
                               color: black;
                               font-family: Verdana;
                               padding: 2%;
-                              margin: 20px 400px;
+                              margin: 1% 10%;
                               overflow: auto;
                             }
                             
@@ -142,7 +142,7 @@
                                 <h5>Length: <%=length%> minutes</h5>
                                 <h5>Premiered: <%=startDate%></h5>
                                 <h5>Ending: <%=endDate%></h5>
-                                <p class="under"><i><%=desc%></i></p>
+                                <p><i><%=desc%></i></p>
                               </div>
                             </div>
 
