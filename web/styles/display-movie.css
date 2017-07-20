@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 19, 2017, 6:17:28 PM
+    Author     : Roderick Burkhardt
+*/
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 10px dimgrey;
+    box-shadow: 0px 0px 10px dimgrey;
+    text-align: center;
+    color: black;
+    font-family: Verdana;
+    padding: 2%;
+    margin: 1% 10%;
+    overflow: auto;
+}
+
+img {
+    width: 50%;
+    height: auto;
+    border: 1px grey solid;
+}
+
+.box {
+    border: 1px grey solid;
+}
+

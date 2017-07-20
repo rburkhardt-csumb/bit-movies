@@ -13,7 +13,7 @@
     </head>
     <body>
         <span>Search Movie ID</span>
-        <form action="MovieServlet" method="post"> 
+        <form action="movie" method="post"> 
         <input type="number" name="movieID"/>
         <input type="submit" value="Submit" id="submit" />
         </form>

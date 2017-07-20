@@ -16,7 +16,6 @@
         <servlet-name>MovieServlet</servlet-name>
         <servlet-class>admin.MovieServlet</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -31,7 +30,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MovieServlet</servlet-name>
-        <url-pattern>/MovieServlet</url-pattern>
+        <url-pattern>/movie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
