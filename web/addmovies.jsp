@@ -37,7 +37,7 @@
 
 
 
-        <form action="addMovie" method="post">
+        <form action="AddMovie" method="post">
             <input type="hidden" name="action" value="add">
             <div class="form-group row">
                 <label for="movie_title">Movie Title:</label>
