@@ -26,9 +26,16 @@ public class ShoppingCart
         return true;
     }
     
-    public MovieTicketOrder removeMovieFromCart()
+    public boolean removeMovieFromCart(Integer index)
     {
-        return null;
+        try
+        {
+            System.out.println(cart.remove(index.intValue()));
+            return true;
+        } catch (Exception e)
+        {
+            return false;
+        }
     }
     
     public boolean emptyCart()
@@ -49,7 +56,7 @@ public class ShoppingCart
             rtrnString = "Shopping Cart contains:\n";
             for (MovieTicketOrder item : cart )
             {
-                rtrnString += item.toString();
+                rtrnString += item.toString() + "\n";
             }
         }
         else

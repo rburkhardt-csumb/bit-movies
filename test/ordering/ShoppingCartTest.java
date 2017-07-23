@@ -5,6 +5,8 @@
  */
 package ordering;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +20,32 @@ import static org.junit.Assert.*;
  */
 public class ShoppingCartTest
 {
+    public ShoppingCart cart;
+    public static SimpleDateFormat sqlDateFormater = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString;
+    Date dateOfMovie;
+    MovieTicketOrder ticket;
     
     public ShoppingCartTest()
     {
+        cart = new ShoppingCart();
+        
+        dateString = "2017-06-23";
+        dateOfMovie = makeDate(dateString);
+        ticket = new MovieTicketOrder(5, dateOfMovie, 2, 2);
+        cart.addMovieToCart(ticket);
+        
+        dateString = "2017-06-25";
+        dateOfMovie = makeDate(dateString);
+        ticket = new MovieTicketOrder(4, dateOfMovie, 4, 0);
+        cart.addMovieToCart(ticket);
+        
+        dateString = "2017-06-27";
+        dateOfMovie = makeDate(dateString);
+        ticket = new MovieTicketOrder(2, dateOfMovie, 1, 5);
+        cart.addMovieToCart(ticket);
+        
+        System.out.println(cart);
     }
     
     @BeforeClass
@@ -50,13 +75,14 @@ public class ShoppingCartTest
     public void testAddMovieToCart()
     {
         System.out.println("addMovieToCart");
-        MovieTicketOrder movieTicketOrder = null;
+        dateString = "2017-06-27";
+        dateOfMovie = makeDate(dateString);
+        MovieTicketOrder movieTicketOrder = new MovieTicketOrder(2, dateOfMovie, 1, 5);
         ShoppingCart instance = new ShoppingCart();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.addMovieToCart(movieTicketOrder);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -66,12 +92,17 @@ public class ShoppingCartTest
     public void testRemoveMovieFromCart()
     {
         System.out.println("removeMovieFromCart");
-        ShoppingCart instance = new ShoppingCart();
-        MovieTicketOrder expResult = null;
-        MovieTicketOrder result = instance.removeMovieFromCart();
+        boolean expResult = true;
+        boolean result = cart.removeMovieFromCart(2);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Testing of remove failure
+        System.out.println("removeMovieFromCart");
+        expResult = false;
+        result = cart.removeMovieFromCart(500);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
     }
 
     /**
@@ -82,11 +113,14 @@ public class ShoppingCartTest
     {
         System.out.println("emptyCart");
         ShoppingCart instance = new ShoppingCart();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.emptyCart();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        expResult = false;
+        result = cart.emptyCart();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -97,11 +131,24 @@ public class ShoppingCartTest
     {
         System.out.println("toString");
         ShoppingCart instance = new ShoppingCart();
-        String expResult = "";
+        String expResult = "Shopping Cart is Empty";
         String result = instance.toString();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+    }
+    
+    public Date makeDate(String dateString) // Test helper
+    {
+        Date date;
+        try
+        {
+            date = sqlDateFormater.parse(dateString);
+        } catch (Exception e)
+        {
+            date = null;
+        }
+        return date;
     }
     
 }
