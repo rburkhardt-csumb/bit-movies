@@ -35,6 +35,19 @@ public class CartServlet extends HttpServlet
         
         HttpSession session = request.getSession();
         
+        ShoppingCart cart;
+        
+        if (session.getAttribute("cart") == null)
+        {
+            session.setAttribute("emptyCart", true);
+        }
+        else
+        {
+            cart = (ShoppingCart) session.getAttribute("cart");
+        }
+        
+        request.getRequestDispatcher(url).forward(request, response);
+        
     }
 
     /**

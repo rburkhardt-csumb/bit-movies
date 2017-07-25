@@ -10,6 +10,7 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://35.188.185.129:3306/movie_tickets"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:8888/movie_tickets"/>-->
       <property name="javax.persistence.jdbc.user" value="bitbuilders"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="zSwz+s6R6da;6#xM"/>

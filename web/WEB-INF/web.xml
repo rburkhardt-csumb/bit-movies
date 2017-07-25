@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddMovie</servlet-name>
-        <url-pattern>/AddMovie</url-pattern>
+        <url-pattern>/addmovie</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>

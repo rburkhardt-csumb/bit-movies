@@ -13,11 +13,47 @@ import java.util.ArrayList;
  */
 public class ShoppingCart
 {
-    private final ArrayList<MovieTicketOrder> cart;
+    private ArrayList<MovieTicketOrder> cart;
+    private Double cartSubtotal;
+    private Double cartTax;
+    private Double cartTotal;
     
     public ShoppingCart()
     {
         cart = new ArrayList<>();
+    }
+
+    public Double getCartSubtotal()
+    {
+        return cartSubtotal;
+    }
+    
+    public boolean setCartSubtotal(Double cartSubtotal)
+    {
+        this.cartSubtotal = cartSubtotal;
+        return true;
+    }
+
+    public Double getCartTax()
+    {
+        return cartTax;
+    }
+    
+    public boolean setCartTax(Double cartTax)
+    {
+        this.cartTax = cartTax;
+        return true;
+    }
+
+    public Double getCartTotal()
+    {
+        return cartTotal;
+    }
+    
+    public boolean setCartTotal(Double cartTotal)
+    {
+        this.cartTotal = cartTotal;
+        return true;
     }
     
     public boolean addMovieToCart( MovieTicketOrder movieTicketOrder )

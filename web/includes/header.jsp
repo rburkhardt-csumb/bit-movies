@@ -16,6 +16,9 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        
+        <!-- Font Awesome -->
+        <link href="styles/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     </header>
     <body>					
@@ -58,7 +61,15 @@
                     </form> -->
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>Login</a></li>
-                        <li><a href="cart">Cart</a></li>
+                        <li>
+                            <a href="cart">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <c:choose>
+                                    <c:when test="${cart.cartTotal == null}"> (&#36;0.00)</c:when>
+                                    <c:otherwise> (&#36;${cart.cartTotal})</c:otherwise>
+                                </c:choose>
+                            </a>
+                        </li>
                         <!-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
