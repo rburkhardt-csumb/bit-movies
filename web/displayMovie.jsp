@@ -19,6 +19,8 @@
 
 <%@include file="includes/header.jsp" %>
 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 
 <!--                        <html>
                         <header>
@@ -65,6 +67,8 @@
                             body{
                               background-color:lightgray;
                             }
+                            
+                            
 
                           </style>
 
@@ -126,7 +130,69 @@
                             </div>
                              /.container-fluid 
                           </nav>-->
+<style>
+    .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+                                color: white;
+                                text-align: center;
+                                text-decoration: none;
+                                display: inline-block;
+                                font-size: 16px;
+                                margin: 4px 8px;
+                                cursor: pointer;
+                                border-radius: 100%;
+                                box-shadow: 0 1px #999;
+                                padding: 5px 10px
+                                   
+                                
+                            }
+    .button:hover {background-color: #3e8e41}
 
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(1px);
+}
+
+.button2 {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button2:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button2:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+  
+
+</style>
 <link href="styles/display-movie.css" rel="stylesheet">
 <div class="shadow" style="background:snow;">
 
@@ -146,6 +212,18 @@
             <h5>Premiered: <%=startDate%></h5>
             <h5>Ending: <%=endDate%></h5>
             <p><i><%=desc%></i></p>
+            
+            <br />
+          
+            <h4><button class="button adultMinus">-</button><span class="adultPriceText"></span> Adult: $12.19 <button class="button adultAdd">+</button></h4>
+
+            <h4><button class="button childMinus">-</button><span class="childPriceText"></span> Child: $10.69 <button class="button childAdd">+</button></h4>
+
+            <h4><button class="button seniorMinus">-</button><span class="seniorPriceText"></span> Senior: $10.69 <button class="button seniorAdd">+</button></h4>
+            
+            <button class="button2">Add to Cart</button>
+
+            
         </div>
     </div>
 
@@ -158,5 +236,63 @@
     </iframe>
 
 </div>
+    
+    <script> 
+        var adultPrice = 0;
+        var childPrice = 0;
+        var seniorPrice = 0;
+        
+        $(".adultAdd").click(function() {
+            adultPrice += 1;    
+            $(".adultPriceText").text(adultPrice);
+        });
+        
+        $(".childAdd").click(function() {
+            childPrice += 1;    
+            $(".childPriceText").text(childPrice);
+        });
+        
+        $(".seniorAdd").click(function() {
+            seniorPrice += 1;    
+            $(".seniorPriceText").text(seniorPrice);
+        });
+        
+        $(".adultMinus").click(function() {
+            adultPrice -= 1;
+            
+            if (adultPrice > 0)
+            {
+                $(".adultPriceText").text(adultPrice);
+            } else {
+                adultPrice = 0;
+                $(".adultPriceText").text("");
+            }
+        });
+        
+        $(".childMinus").click(function() {
+            childPrice -= 1;    
+
+            if (childPrice > 0)
+            {
+                $(".childPriceText").text(childPrice);
+            } else {
+                childPrice = 0;
+                $(".childPriceText").text("");
+            }
+        });
+        
+        $(".seniorMinus").click(function() {
+            seniorPrice -= 1;    
+            
+            if (seniorPrice > 0)
+            {
+                $(".seniorPriceText").text(seniorPrice);
+            } else {
+                seniorPrice = 0;
+                $(".seniorPriceText").text("");
+            }
+        });
+        
+    </script>
 
 <%@include file="includes/footer.jsp" %>
