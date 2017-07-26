@@ -221,7 +221,9 @@
 
             <h4><button class="button seniorMinus">-</button><span class="seniorPriceText"></span> Senior: $10.69 <button class="button seniorAdd">+</button></h4>
             
+            <form action="cart" method="post">
             <button class="button2">Add to Cart</button>
+            </form>
 
             
         </div>
