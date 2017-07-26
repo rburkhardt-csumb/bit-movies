@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admin;
+package display;
 
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -54,7 +54,7 @@ public class MovieServlet extends HttpServlet {
         request.setAttribute("image", image);
         request.setAttribute("trailer", trailer);
        
-        request.getRequestDispatcher("/displayMovie.jsp").forward(request, response);
+        request.getRequestDispatcher("/displaymovie.jsp").forward(request, response);
     }
 
 }

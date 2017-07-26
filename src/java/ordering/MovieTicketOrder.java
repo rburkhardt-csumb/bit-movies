@@ -19,7 +19,7 @@ public class MovieTicketOrder
     private Date movieDate;
     private Integer numOfAdult;
     private Integer numOfChild;
-    private Integer numOfSenior;
+    // private Integer numOfSenior;
 
     public SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -29,7 +29,7 @@ public class MovieTicketOrder
         this.movieDate = new Date();
         this.numOfAdult = 0;
         this.numOfChild = 0;
-        this.numOfSenior = 0;
+        // this.numOfSenior = 0;
     }
 
     public MovieTicketOrder(Integer movieId, Date movieDate, Integer numOfAdult, Integer numOfChild)
@@ -38,7 +38,7 @@ public class MovieTicketOrder
         this.movieDate = movieDate;
         this.numOfAdult = numOfAdult;
         this.numOfChild = numOfChild;
-        this.numOfSenior = numOfSenior;
+        // this.numOfSenior = numOfSenior;
     }
 
     public void setMovieId(Integer movieId)
@@ -81,15 +81,15 @@ public class MovieTicketOrder
         return numOfChild;
     }
     
-    public void setNumOfSenior(Integer numOfSenior)
-    {
-        this.numOfSenior = numOfSenior;
-    }
-
-    public Integer getNumOfSenior()
-    {
-        return numOfSenior;
-    }
+//    public void setNumOfSenior(Integer numOfSenior)
+//    {
+//        this.numOfSenior = numOfSenior;
+//    }
+//
+//    public Integer getNumOfSenior()
+//    {
+//        return numOfSenior;
+//    }
 
     @Override
     public String toString()
