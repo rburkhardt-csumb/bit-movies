@@ -5,10 +5,8 @@
  */
 package data;
 
-import static data.CustomerDB.selectByFullNameAndAddress;
+
 import entities.Customer;
-import entities.Movie;
-import entities.OrderMovie;
 import entities.OrderObj;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +16,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 /**
  * @author Lawrence Dizon
- * @author Roderick Burkhardt
  */
 public class InvoiceDB
 {
