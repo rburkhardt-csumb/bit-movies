@@ -32,15 +32,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries(
 {
-    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
-    , @NamedQuery(name = "Customer.findByCustId", query = "SELECT c FROM Customer c WHERE c.custId = :custId")
-    , @NamedQuery(name = "Customer.findByCustFname", query = "SELECT c FROM Customer c WHERE c.custFname = :custFname")
-    , @NamedQuery(name = "Customer.findByCustLname", query = "SELECT c FROM Customer c WHERE c.custLname = :custLname")
-    , @NamedQuery(name = "Customer.findByCustEmail", query = "SELECT c FROM Customer c WHERE c.custEmail = :custEmail")
-    , @NamedQuery(name = "Customer.findByCustPhone", query = "SELECT c FROM Customer c WHERE c.custPhone = :custPhone")
-    , @NamedQuery(name = "Customer.findByCustAddress1", query = "SELECT c FROM Customer c WHERE c.custAddress1 = :custAddress1")
-    , @NamedQuery(name = "Customer.findByCustAddress2", query = "SELECT c FROM Customer c WHERE c.custAddress2 = :custAddress2")
-    , @NamedQuery(name = "Customer.findByFullNameAndAddress", query = "SELECT c FROM Customer c WHERE c.custFname = :custFname AND c.custLname = :custLname AND c.custEmail = :custEmail")
+    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"), 
+    @NamedQuery(name = "Customer.findByCustId", query = "SELECT c FROM Customer c WHERE c.custId = :custId"), 
+    @NamedQuery(name = "Customer.findByCustFname", query = "SELECT c FROM Customer c WHERE c.custFname = :custFname"), 
+    @NamedQuery(name = "Customer.findByCustLname", query = "SELECT c FROM Customer c WHERE c.custLname = :custLname"), 
+    @NamedQuery(name = "Customer.findByCustEmail", query = "SELECT c FROM Customer c WHERE c.custEmail = :custEmail"), 
+    @NamedQuery(name = "Customer.findByCustPhone", query = "SELECT c FROM Customer c WHERE c.custPhone = :custPhone"), 
+    @NamedQuery(name = "Customer.findByCustAddress1", query = "SELECT c FROM Customer c WHERE c.custAddress1 = :custAddress1"), 
+    @NamedQuery(name = "Customer.findByCustAddress2", query = "SELECT c FROM Customer c WHERE c.custAddress2 = :custAddress2"), 
+    @NamedQuery(name = "Customer.findByFullNameAndAddress", query = "SELECT c FROM Customer c WHERE c.custEmail = :custFname AND c.custLname = :custLname AND c.custEmail = :custEmail"), 
+    @NamedQuery(name = "Customer.checkLogin", query = "SELECT c FROM Customer c WHERE c.email = :custEmail AND c.custPassword = :custPassword")
 })
 public class Customer implements Serializable
 {

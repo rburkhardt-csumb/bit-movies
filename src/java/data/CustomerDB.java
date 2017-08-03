@@ -21,9 +21,10 @@ import javax.persistence.Query;
  */
 public class CustomerDB
 {
-     public static boolean insertCustomer(Customer customer)
+
+    public static boolean insertCustomer(Customer customer)
     {
-        if (!CustomerDB.customerExists(customer.getCustFname(),customer.getCustLname(),customer.getCustAddress1()))
+        if (!CustomerDB.customerExists(customer.getCustFname(), customer.getCustLname(), customer.getCustEmail()))
         {
             EntityManager em = DBUtil.getEmFactory().createEntityManager();
             EntityTransaction trans = em.getTransaction();
@@ -33,21 +34,19 @@ public class CustomerDB
                 em.persist(customer);
                 trans.commit();
                 return true;
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 System.err.println(e);
                 trans.rollback();
                 return false;
-            }
-            finally
+            } finally
             {
                 em.close();
             }
         }
         return false;
     }
-     
+
     public static boolean updateCustomer(Customer customer)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -58,19 +57,17 @@ public class CustomerDB
             em.merge(customer);
             trans.commit();
             return true;
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             System.err.println(e);
             trans.rollback();
             return false;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-      
+
     public static boolean deleteCustomer(Customer customer)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -81,19 +78,17 @@ public class CustomerDB
             em.remove(em.merge(customer));
             trans.commit();
             return true;
-        } 
-        catch (Exception e)
+        } catch (Exception e)
         {
             System.err.println(e);
             trans.rollback();
             return false;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
+
     public static Customer selectCustomerByID(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -101,49 +96,36 @@ public class CustomerDB
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData;
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-    
-    
-   
-    
-        public static String getCustomerPhone(Integer custId)
+
+    public static String getCustomerPhone(Integer custId)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustId", Customer.class);
         q.setParameter("custId", custId);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData.getCustPhone();
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-        
-    
-   
-    
-    
-    
-    
-     public static List<Customer> selectCustomerByLname(String lname)
+
+    public static List<Customer> selectCustomerByLname(String lname)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustLname", Customer.class);
@@ -156,41 +138,36 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-    
-    
-    public static Customer  selectCustomerByEmail(String email)
+
+    public static Customer selectCustomerByEmail(String email)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustEmail", Customer.class);
         q.setParameter("custEmail", email);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData;
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-     
-     public static List<Customer> selectCustomerByPhone(String phone)
+
+    public static List<Customer> selectCustomerByPhone(String phone)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByCustPhone", Customer.class);
@@ -203,22 +180,18 @@ public class CustomerDB
             {
                 customers = null;
             }
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             System.err.println(e);
             customers = null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
         return customers;
     }
-   
- 
-    
-    public static Customer selectByFullNameAndAddress(String fname, String lname, String email)
+
+    public static Customer selectByFullNameEmail(String fname, String lname, String email)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Query q = em.createNamedQuery("Customer.findByFullNameAndAddress", Customer.class);
@@ -227,24 +200,40 @@ public class CustomerDB
         q.setParameter("custEmail", email);
         try
         {
-            Customer customerData = (Customer)q.getSingleResult();
+            Customer customerData = (Customer) q.getSingleResult();
             return customerData;
-        }
-        catch (NoResultException e)
+        } catch (NoResultException e)
         {
             return null;
-        }
-        finally
+        } finally
         {
             em.close();
         }
     }
-      
-    
-      
-    public static boolean  customerExists(String fname, String lname, String email)
+
+    public static boolean customerExists(String fname, String lname, String email)
     {
-        Customer customer = selectByFullNameAndAddress(fname, lname, email);
+        Customer customer = selectByFullNameEmail(fname, lname, email);
         return customer != null;
+    }
+
+    public static boolean customerExists(String email, String password)
+    {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        Query q = em.createNamedQuery("Customer.checkLogin", Customer.class);
+        q.setParameter("custEmail", email);
+        q.setParameter("custPassword", password);
+        
+        try
+        {
+            Customer customer = (Customer) q.getSingleResult();
+            return customer != null;
+        } catch (NoResultException e)
+        {
+            return false;
+        } finally
+        {
+            em.close();
+        }
     }
 }

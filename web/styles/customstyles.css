@@ -35,3 +35,12 @@
 .cart-summary div:last-child {
     border-bottom: 1px solid rgba(0,0,0,.25);
 }
+
+/* Index content styles */
+.movie-day-display {
+    width: 31%;
+    min-width: 275px;
+    background-color: rgba(0,0,0,.05);
+    float: left;
+    margin: .25em 1.14%;
+}

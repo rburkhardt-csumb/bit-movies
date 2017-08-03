@@ -127,7 +127,7 @@ public class CustomerDBTest
      * Test of selectCustomerByPhone method, of class CustomerDB. 
      */
     @Test
-    public void testSelectByFullNameAndAddress()
+    public void testSelectByFullNameEmail()
     {
 
         System.out.println("selectByFullNameAndAddress");
@@ -136,8 +136,116 @@ public class CustomerDBTest
         String email = "robforb123@gmail.com";
         Integer id = 01;
         Customer expResult = CustomerDB.selectCustomerByID(id);
-        Customer result= CustomerDB.selectByFullNameAndAddress(fname, lname, email);   
+        Customer result= CustomerDB.selectByFullNameEmail(fname, lname, email);   
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of insertCustomer method, of class CustomerDB.
+     */
+    @Test
+    public void testInsertCustomer()
+    {
+        System.out.println("insertCustomer");
+        Customer customer = null;
+        boolean expResult = false;
+        boolean result = CustomerDB.insertCustomer(customer);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateCustomer method, of class CustomerDB.
+     */
+    @Test
+    public void testUpdateCustomer()
+    {
+        System.out.println("updateCustomer");
+        Customer customer = null;
+        boolean expResult = false;
+        boolean result = CustomerDB.updateCustomer(customer);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of deleteCustomer method, of class CustomerDB.
+     */
+    @Test
+    public void testDeleteCustomer()
+    {
+        System.out.println("deleteCustomer");
+        Customer customer = null;
+        boolean expResult = false;
+        boolean result = CustomerDB.deleteCustomer(customer);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of selectCustomerByID method, of class CustomerDB.
+     */
+    @Test
+    public void testSelectCustomerByID()
+    {
+        System.out.println("selectCustomerByID");
+        Integer custId = null;
+        Customer expResult = null;
+        Customer result = CustomerDB.selectCustomerByID(custId);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of selectCustomerByEmail method, of class CustomerDB.
+     */
+    @Test
+    public void testSelectCustomerByEmail()
+    {
+        System.out.println("selectCustomerByEmail");
+        String email = "";
+        Customer expResult = null;
+        Customer result = CustomerDB.selectCustomerByEmail(email);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of customerExists method, of class CustomerDB.
+     */
+    @Test
+    public void testCustomerExists_3args()
+    {
+        System.out.println("customerExists");
+        String fname = "";
+        String lname = "";
+        String email = "";
+        boolean expResult = false;
+        boolean result = CustomerDB.customerExists(fname, lname, email);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of customerExists method, of class CustomerDB.
+     */
+    @Test
+    public void testCustomerExists_String_String()
+    {
+        System.out.println("customerExists");
+        String email = "";
+        String password = "";
+        boolean expResult = false;
+        boolean result = CustomerDB.customerExists(email, password);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
     
 
